@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+
+.titulo {
+    font-size: 24px;
+    color: #293845;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.sessoes { 
+   padding: 0px 24px;
+   height: 100%;
+   overflow-y: scroll;
+}
+
+.sessao > p {
+    font-size: 20px;
+    color: #293845;
+    margin: 20px 0px;
+}
+
+.horarios {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.horarios > div {
+    width: 83px;
+    height: 43px;
+    background-color: #E8833A;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 4px 8px 4px 0px;
+
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+}
