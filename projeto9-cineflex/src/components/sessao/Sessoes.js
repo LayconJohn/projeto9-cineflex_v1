@@ -147,8 +147,8 @@ function Sessao({valor}) {
 export default function Sessoes() {
     return (
         <>
-            <h3 className="titulo">Selecione a Sessão</h3>
-            <main className="sessoes">
+            <h3 className="titulo oculto">Selecione a Sessão</h3>
+            <main className="sessoes oculto">
                 {dias.map(valor => {
                     return <Sessao valor={valor}/>
                 })}

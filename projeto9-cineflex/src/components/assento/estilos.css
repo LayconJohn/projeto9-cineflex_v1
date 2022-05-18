@@ -1,0 +1,40 @@
+.titulo {
+    font-size: 24px;
+    color: #293845;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.assentos {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 18px 77px 18px;
+}
+
+.assento {
+    width: 26px;
+    height: 26px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 11px;
+    margin: 18px 8px
+}
+
+.disponivel {
+    background-color: #C3CFD9;
+    border: 1px solid #808F9D;
+}
+
+.selecionado {
+    background-color: #8DD7CF;
+    border: 1px solid #8DD7CF;
+}
+
+.indisponivel {
+    background-color: #FBE192;
+    border: 1px solid #FBE192;
+}
