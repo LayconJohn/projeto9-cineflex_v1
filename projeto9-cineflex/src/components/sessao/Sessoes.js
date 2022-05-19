@@ -1,3 +1,7 @@
+import { Link } from "react-router-dom";
+
+import Rodape from "../rodape/Rodape";
+
 import "./estilos.css";
 
 const sessoes = {
@@ -136,10 +140,12 @@ function Sessao({valor}) {
     return (
         <div className="sessao" key={valor.id}>
             <p>{`${valor.weekday} - ${valor.date}`}</p>
-            <div className="horarios">
-                <div>{valor.showtimes[0].name}</div>
-                <div>{valor.showtimes[1].name}</div>
-            </div>
+            <Link to="/sessao/240">
+                <div className="horarios">
+                    <div>{valor.showtimes[0].name}</div>
+                    <div>{valor.showtimes[1].name}</div>
+                </div>
+            </Link>
         </div> 
     )
 }
@@ -147,12 +153,13 @@ function Sessao({valor}) {
 export default function Sessoes() {
     return (
         <>
-            <h3 className="titulo oculto">Selecione a Sessão</h3>
-            <main className="sessoes oculto">
+            <h3 className="titulo ">Selecione a Sessão</h3>
+            <main className="sessoes ">
                 {dias.map(valor => {
                     return <Sessao valor={valor}/>
                 })}
             </main>
+            <Rodape />
         </>
     )
 } 

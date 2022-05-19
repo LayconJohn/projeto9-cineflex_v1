@@ -1,3 +1,7 @@
+import { Link } from "react-router-dom";
+
+import Rodape from "../rodape/Rodape";
+
 import "./estilos.css";
 
 const assentos = {
@@ -279,8 +283,8 @@ const forms = [{titulo: "Nome do comprador", input: "Digite seu nome..."},
 export default function Assentos() {
     return (
         <>
-            <h3 className="titulo oculto">Selecione o(s) assento(s)</h3>
-            <main className="oculto">
+            <h3 className="titulo ">Selecione o(s) assento(s)</h3>
+            <main className="">
                 <div className="assentos">
                     {listaAssentos.map(assento => {
                         return <div className={`assento ${assento.isAvailable ? "disponivel" : "indisponivel"}`}>{assento.name}</div>
@@ -303,9 +307,12 @@ export default function Assentos() {
                     })}                   
                 </div>
                 <div className="espaco-button">
-                       <div className="button">Reservar assento (s)</div> 
+                    <Link to="/sucesso">
+                        <div className="button">Reservar assento (s)</div> 
+                    </Link>     
                 </div>
             </main>
+            <Rodape />
         </>
     )
 }

@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-h3 {
+.titulo-inicial {
     font-size: 24px;
     color: #293845;
     text-align: center;

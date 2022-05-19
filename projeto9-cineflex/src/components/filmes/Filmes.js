@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./estilos.css"
 
 const filmes = [
@@ -76,9 +78,11 @@ const filmes = [
 
 function Filme({valor}){
     return (
-        <div className="filme" key={valor.id}>
-            <img src={valor.posterURL}></img>
-        </div>
+        <Link to="/filme/37">
+            <div className="filme" key={valor.id}>
+                <img src={valor.posterURL}></img>
+            </div>
+        </Link>
 
     )
 }
@@ -86,12 +90,11 @@ function Filme({valor}){
 export default function Filmes() {
     return (
         <>
-            <h3 className="oculto" >Selecione o filme</h3>
-            <main className="filmes oculto">
+            <h3 className="titulo-inicial" >Selecione o filme</h3>
+            <main className="filmes ">
             {filmes.map((valor) => {
                 return <Filme valor={valor}/>
             })}
-
             </main>
         </>
     )

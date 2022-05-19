@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./estilos.css";
 
 const dados = [
@@ -21,7 +23,9 @@ export default function Sucesso() {
                         </div>
                     })}
                 <div className="back-home">
-                    <div className="button">Voltar para a Home</div>
+                    <Link to="/">
+                        <div className="button">Voltar para a Home</div>
+                    </Link>
                 </div>
             </main>
         </>
