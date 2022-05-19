@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import styled from 'styled-components';
 
 import Rodape from "../rodape/Rodape";
 
@@ -283,36 +284,111 @@ const forms = [{titulo: "Nome do comprador", input: "Digite seu nome..."},
 export default function Assentos() {
     return (
         <>
-            <h3 className="titulo ">Selecione o(s) assento(s)</h3>
+            <Titulo>Selecione o(s) assento(s)</Titulo>
             <main className="">
-                <div className="assentos">
+                <SelecionarAssentos>
                     {listaAssentos.map(assento => {
                         return <div className={`assento ${assento.isAvailable ? "disponivel" : "indisponivel"}`}>{assento.name}</div>
                     })}
-                </div>
-                <div className="legenda">
+                </SelecionarAssentos>
+                <Legenda>
                         {legendas.map((nome, index) => {
                             return <div>
                                 <div className={`assento ${nome}`} key={index}></div>
                                 <p>{nome}</p>
                             </div>
                         })}
-                </div>
-                <div className="form">
+                </Legenda>
+                <Form>
                     {forms.map((texto, index) => {
                         return <div>
                         <p>{texto.titulo}</p>
                         <div className="input">{texto.input}</div>
                         </div>
                     })}                   
-                </div>
-                <div className="espaco-button">
+                </Form>
+                <Button>
                     <Link to="/sucesso">
-                        <div className="button">Reservar assento (s)</div> 
+                        <div>Reservar assento (s)</div> 
                     </Link>     
-                </div>
+                </Button>
             </main>
             <Rodape />
         </>
     )
 }
+
+const Titulo = styled.h3`
+    font-size: 24px;
+    color: #293845;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+`;
+
+const SelecionarAssentos = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0px 18px 15px 18px;
+`;
+
+const Form = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .input {
+        width: 327px;
+        height: 51px;
+        border: 1px solid #D4D4D4;
+        display: flex;
+        align-items: center;
+        padding-left: 18px;
+    
+        color: #AFAFAF;
+        font-size: 18px;
+    }
+
+    p {
+        margin: 10px 0px;
+    }
+`;
+
+const Button = styled.div`
+    padding-left: 72px;
+    padding-bottom: 20px;
+    padding: 20px 0px 20px 72px;
+
+    div {
+        width: 225px;
+        height: 42px;
+        background-color:#E8833A;
+        border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        color: white;
+        font-size: 18px;
+    }
+`;
+
+const Legenda = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0px 6px 15px 6px;
+    }
+
+    p {
+        color:#4E5A65;
+        font-size: 13px;
+    }
+`

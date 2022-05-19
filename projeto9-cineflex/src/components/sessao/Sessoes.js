@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import styled from 'styled-components';
 
 import Rodape from "../rodape/Rodape";
 
@@ -153,13 +154,33 @@ function Sessao({valor}) {
 export default function Sessoes() {
     return (
         <>
-            <h3 className="titulo ">Selecione a Sessão</h3>
-            <main className="sessoes ">
+            <Titulo>Selecione a Sessão</Titulo>
+            <RegiaoSessoes>
                 {dias.map(valor => {
                     return <Sessao valor={valor}/>
                 })}
-            </main>
+            </RegiaoSessoes>
             <Rodape />
         </>
     )
 } 
+
+const Titulo = styled.h3`
+    font-size: 24px;
+    color: #293845;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+`;
+
+const RegiaoSessoes = styled.main`
+    padding: 0px 24px;
+    height: 100%;
+    overflow-y: scroll;
+
+    p {
+        font-size: 20px;
+        color: #293845;
+        margin: 20px 0px;
+    }
+`

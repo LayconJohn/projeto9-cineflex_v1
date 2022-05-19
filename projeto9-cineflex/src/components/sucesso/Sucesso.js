@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import styled from 'styled-components';
 
 import "./estilos.css";
 
@@ -11,8 +12,8 @@ const dados = [
 export default function Sucesso() {
     return (
         <>
-            <h3 className="titulo">Pedido feito com sucesso!</h3>
-            <main className="sucesso">
+            <Titulo>Pedido feito com sucesso!</Titulo>
+            <RegiaoSucesso>
                 
                     {dados.map((dado, index) => {
                         return <div className="descricao" key={index}><h6>{dado.descricao}</h6>
@@ -22,12 +23,59 @@ export default function Sucesso() {
     
                         </div>
                     })}
-                <div className="back-home">
+                <Button>
                     <Link to="/">
-                        <div className="button">Voltar para a Home</div>
+                        <div>Voltar para a Home</div>
                     </Link>
-                </div>
-            </main>
+                </Button>
+            </RegiaoSucesso>
         </>
     )
 }
+
+const Titulo = styled.h3`
+    font-weight: bold;
+    font-size: 24px;
+    color: #247A6B;
+    text-align: center;
+    margin: 40px 80px 10px 80px;
+
+    word-wrap: normal;
+`;
+
+const RegiaoSucesso = styled.main`
+    h6 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #293845;
+    }
+
+    p {
+        font-size: 22px;
+        color: #293845; 
+    }
+
+    div {
+        margin: 6px auto;
+        margin-top: 40px;
+    }
+`
+
+const Button = styled.div`
+    padding-left: 72px;
+    padding-bottom: 20px;
+    padding: 20px 0px 20px 10px;
+
+    div {
+        width: 225px;
+        height: 42px;
+        background-color:#E8833A;
+        border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        color: white;
+        font-size: 18px;
+    }
+`;

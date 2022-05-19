@@ -1,19 +1,4 @@
 
-.titulo {
-    font-size: 24px;
-    color: #293845;
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 10px;
-}
-
-.assentos {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 0px 18px 15px 18px;
-}
-
 .assento {
     width: 26px;
     height: 26px;
@@ -39,64 +24,4 @@
 .indisponivel {
     background-color: #FBE192;
     border: 1px solid #FBE192;
-}
-
-.legenda {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.legenda > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0px 6px 15px 6px;
-}
-
-.legenda  p {
-    color:#4E5A65;
-    font-size: 13px;
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.input {
-    width: 327px;
-    height: 51px;
-    border: 1px solid #D4D4D4;
-    display: flex;
-    align-items: center;
-    padding-left: 18px;
-
-    color: #AFAFAF;
-    font-size: 18px;
-}
-
-.form p {
-    margin: 10px 0px;
-}
-
-.espaco-button {
-    padding-left: 72px;
-    padding-bottom: 20px;
-    padding: 20px 0px 20px 72px;
-}
-
-.button {
-    width: 225px;
-    height: 42px;
-    background-color:#E8833A;
-    border-radius: 3px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    color: white;
-    font-size: 18px;
 }

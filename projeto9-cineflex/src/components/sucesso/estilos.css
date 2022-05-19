@@ -2,27 +2,6 @@
     box-sizing: border-box;
 }
 
-.titulo {
-    font-weight: bold;
-    font-size: 24px;
-    color: #247A6B;
-    text-align: center;
-    margin: 40px 80px 10px 80px;
-
-    word-wrap: normal;
-}
-
-.sucesso h6 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #293845;
-}
-
-.sucesso p {
-    font-size: 22px;
-    color: #293845; 
-}
-
 .descricao {
     margin: 0 auto;
 }
@@ -33,9 +12,4 @@
 
 .descricao p {
     margin: 2px 29px;
-}
-
-.sucesso div {
-    margin: 6px auto;
-    margin-top: 40px;
 }

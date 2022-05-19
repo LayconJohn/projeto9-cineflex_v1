@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import styled from 'styled-components';
 
 import "./estilos.css"
 
@@ -90,12 +91,25 @@ function Filme({valor}){
 export default function Filmes() {
     return (
         <>
-            <h3 className="titulo-inicial" >Selecione o filme</h3>
-            <main className="filmes ">
+            <Titulo>Selecione o filme</Titulo>
+            <SelecionarFilmes>
             {filmes.map((valor) => {
                 return <Filme valor={valor}/>
             })}
-            </main>
+            </SelecionarFilmes>
         </>
     )
 }
+
+const Titulo = styled.h3`
+    font-size: 24px;
+    color: #293845;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+`
+
+const SelecionarFilmes = styled.main`
+    display: flex;
+    flex-wrap: wrap;
+`
