@@ -35,7 +35,7 @@ export default function Sessoes() {
         promisse.then((response) => {
             setSessoes(response.data)
             console.log(response.data)
-            setDias([...sessoes.days])
+            setDias(...sessoes.days)
         });
         promisse.catch(() => {
             alert("Deu ruim");

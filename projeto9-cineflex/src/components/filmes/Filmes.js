@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -7,12 +7,11 @@ import "./estilos.css"
 import { Loading } from "../Loading";
 
 function Filme({valor}){
-    const {idSessao} = useParams();
 
     return (
 
         
-        <Link to={`/filme/${idSessao}`}>
+        <Link to={`/filme/${valor.id}`}>
             <div className="filme" key={valor.id}>
                 <img src={valor.posterURL}></img>
             </div>
@@ -21,11 +20,9 @@ function Filme({valor}){
     )
 }
 
-export default function Filmes() {
+export default function Filmes({idSessao}) {
     //Estado
     const [filmes, setFilmes] = useState([]);
-
-    
 
     useEffect(() => {
         const promisse = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies");
@@ -35,8 +32,6 @@ export default function Filmes() {
             console.log(filmes)
         })
     },[])
-    
-
 
     return (
         <>
@@ -44,7 +39,7 @@ export default function Filmes() {
             {filmes.length === 0 ? <Loading /> :
                 <SelecionarFilmes>
                     {filmes.map((valor) => {
-                        return <Filme valor={valor}/>
+                        return <Filme valor={valor} idSessao={idSessao}/>
                     })}
                 </SelecionarFilmes>
             }

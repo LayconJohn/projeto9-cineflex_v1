@@ -6,12 +6,12 @@ import Sessoes from "./components/sessao/Sessoes";
 import Assentos from "./components/assento/Assentos";
 import Sucesso from "./components/sucesso/Sucesso";
 
-export default function App() {
+export default function App({idSessao}) {
     return (
         <BrowserRouter>
             <Topo />
             <Routes>
-                <Route path="/" element={<Filmes />}/>
+                <Route path="/" element={<Filmes idSessao={idSessao}/>}/>
                 <Route path="/filme/:idSessao" element={<Sessoes />}/>
                 <Route path="/sessao/240" element={<Assentos />}/>
                 <Route path="/sucesso" element={<Sucesso />} />
