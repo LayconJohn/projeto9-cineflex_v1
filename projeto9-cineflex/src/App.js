@@ -12,7 +12,7 @@ export default function App() {
             <Topo />
             <Routes>
                 <Route path="/" element={<Filmes />}/>
-                <Route path="/filme/37" element={<Sessoes />}/>
+                <Route path="/filme/:idSessao" element={<Sessoes />}/>
                 <Route path="/sessao/240" element={<Assentos />}/>
                 <Route path="/sucesso" element={<Sucesso />} />
             </Routes>
