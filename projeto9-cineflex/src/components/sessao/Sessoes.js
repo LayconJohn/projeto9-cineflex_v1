@@ -26,7 +26,6 @@ function Sessao({valor}) {
 export default function Sessoes() {
     //Estado
     const [sessoes, setSessoes] = useState({});
-    const [dias, setDias] = useState([]);
 
     //logic
     const {idSessao} = useParams();
@@ -35,11 +34,12 @@ export default function Sessoes() {
         promisse.then((response) => {
             setSessoes(response.data)
             console.log(response.data)
-            setDias(...sessoes.days)
         });
         promisse.catch(() => {
             alert("Deu ruim");
-        })
+        });
+        
+        
     }, []);
 
 
@@ -47,9 +47,9 @@ export default function Sessoes() {
     return (
         <>
             <Titulo>Selecione a Sessão</Titulo>
-            {dias.length === 0 ? <Loading /> : 
+            {sessoes.days === undefined ? <Loading /> : 
                 <RegiaoSessoes>
-                    {sessoes.map(valor => {
+                    {sessoes.days.map(valor => {
                         return <Sessao valor={valor}/>
                     })}
                 </RegiaoSessoes>
