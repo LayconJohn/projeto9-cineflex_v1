@@ -10,16 +10,18 @@ import "./estilos.css";
 
 const legendas = ["selecionado", "disponivel", "indisponivel"];
 
-const forms = [{titulo: "Nome do comprador", input: "Digite seu nome..."},
-{titulo: "CPF do comprador", input: "Digite seu CPF..."}]
-
 export default function Assentos() {
 
     //Estado
     const [assentos, setAssentos] = useState([]);
     const [data, setData] = useState({});
+    const [nome, setNome] = useState("");
+    const [email, setEmail] = useState("");
 
     //logic
+    const forms = [{titulo: "Nome do comprador", input: "Digite seu nome...", type:"text", value:nome},
+    {titulo: "CPF do comprador", input: "Digite seu CPF...", type:"email", value:email}]
+
     const {idAssento} = useParams();
     console.log("Id dos assentos: ", idAssento)
     useEffect(() => {
@@ -57,19 +59,38 @@ export default function Assentos() {
                         </div>
                     })}
                 </Legenda>
-                <Form>
-                    {forms.map((texto, index) => {
-                        return <div>
-                        <p>{texto.titulo}</p>
-                        <div className="input">{texto.input}</div>
+                <form>
+                    <Form>
+
+                        <div>
+                            <p>Nome do comprador</p>
+                            <input
+                                type="text"
+                                placeholder="Digite seu nome"
+                                value={nome}
+                                required
+                                onChange={(e) => setNome(e.target.value)}
+                            />
                         </div>
-                    })}                   
-                </Form>
-                <Button>
-                    <Link to="/sucesso">
-                        <div>Reservar assento (s)</div> 
-                    </Link>     
-                </Button>
+
+                        <div>
+                            <p>CPF do comprador</p>
+                            <input
+                                type="text"
+                                placeholder="Digite seu CPF"
+                                value={email}
+                                required
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                 
+                    </Form>
+                    <Button>
+                        <Link to="/sucesso">
+                            <div>Reservar assento (s)</div> 
+                        </Link>     
+                    </Button>
+                </form>
             </main>
             <Rodape 
                 image={data.movie.posterURL}
@@ -101,7 +122,7 @@ const Form = styled.div`
     justify-content: center;
     align-items: center;
 
-    .input {
+    input {
         width: 327px;
         height: 51px;
         border: 1px solid #D4D4D4;
