@@ -29,7 +29,8 @@ export default function Filmes({idSessao}) {
 
         promisse.then(response => {
             setFilmes(response.data)
-            console.log(filmes)
+            console.log("Filmes... OK")
+            //console.log(filmes)
         })
     },[])
 

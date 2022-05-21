@@ -8,12 +8,12 @@ import { Loading } from "../Loading";
 
 import "./estilos.css";
 
-function Sessao({valor}) {
+function Sessao({sessoes, valor}) {
  
     return (
         <div className="sessao" key={valor.id}>
             <p>{`${valor.weekday} - ${valor.date}`}</p>
-            <Link to={`/sessao/${valor.id}`}>
+            <Link to={`/sessao/${sessoes.id}`}>
                 <div className="horarios">
                     <div>{valor.showtimes[0].name}</div>
                     <div>{valor.showtimes[1].name}</div>
@@ -33,7 +33,8 @@ export default function Sessoes() {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idSessao}/showtimes`);
         promisse.then((response) => {
             setSessoes(response.data)
-            console.log(response.data)
+            console.log("Sessões... OK")
+            //console.log(response.data)
         });
         promisse.catch(() => {
             alert("Deu ruim");
@@ -48,13 +49,14 @@ export default function Sessoes() {
             {sessoes.days === undefined ? <Loading /> : 
                 <RegiaoSessoes>
                     {sessoes.days.map(valor => {
-                        return <Sessao valor={valor}/>
+                        return <Sessao sessoes={sessoes} valor={valor}/>
                     })}
                 </RegiaoSessoes>
             }
             <Rodape 
                 image={sessoes.posterURL}
                 title={sessoes.title}
+                horario={""}
             />
         </>
     )

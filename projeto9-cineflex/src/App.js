@@ -13,7 +13,7 @@ export default function App({idSessao}) {
             <Routes>
                 <Route path="/" element={<Filmes idSessao={idSessao}/>}/>
                 <Route path="/filme/:idSessao" element={<Sessoes />}/>
-                <Route path="/sessao/2:idAssento" element={<Assentos />}/>
+                <Route path="/sessao/:idAssento" element={<Assentos />}/>
                 <Route path="/sucesso" element={<Sucesso />} />
             </Routes>
         </BrowserRouter>

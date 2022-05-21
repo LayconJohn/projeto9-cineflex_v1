@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 
 import Rodape from "../rodape/Rodape";
+import { Loading } from "../Loading";
 
 import "./estilos.css";
 
@@ -16,12 +17,23 @@ export default function Assentos() {
 
     //Estado
     const [assentos, setAssentos] = useState([]);
+    const [data, setData] = useState({});
 
     //logic
     const {idAssento} = useParams();
+    console.log("Id dos assentos: ", idAssento)
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idAssento}/seats`);
-        promisse.then((response) => setAssentos([...response.data.seats]))
+        promisse
+            .then((response) => {
+            setAssentos([...response.data.seats])
+            setData(response.data)
+            console.log("Assentos... OK")
+        })
+            .catch((err) => {
+                console.log("Erro nos Assentos")
+                console.log(err)
+            })
     }, [])
     
 
@@ -29,19 +41,21 @@ export default function Assentos() {
     return (
         <>
             <Titulo>Selecione o(s) assento(s)</Titulo>
-            <main className="">
-                <SelecionarAssentos>
-                    {assentos.map(assento => {
-                        return <div className={`assento ${assento.isAvailable ? "disponivel" : "indisponivel"}`}>{assento.name}</div>
-                    })}
-                </SelecionarAssentos>
-                <Legenda>
-                        {legendas.map((nome, index) => {
-                            return <div>
-                                <div className={`assento ${nome}`} key={index}></div>
-                                <p>{nome}</p>
-                            </div>
+            <main>
+                {assentos.length === 0 ? <Loading /> : 
+                    <SelecionarAssentos>
+                        {assentos.map((assento,index) => {
+                            return <div className={`assento ${assento.isAvailable ? "disponivel" : "indisponivel"}`} key={index}>{assento.name}</div>
                         })}
+                    </SelecionarAssentos>
+                }
+                <Legenda>
+                    {legendas.map((nome, index) => {
+                        return <div>
+                            <div className={`assento ${nome}`} key={index}></div>
+                            <p>{nome}</p>
+                        </div>
+                    })}
                 </Legenda>
                 <Form>
                     {forms.map((texto, index) => {
@@ -57,7 +71,11 @@ export default function Assentos() {
                     </Link>     
                 </Button>
             </main>
-            <Rodape />
+            <Rodape 
+                image={data.movie.posterURL}
+                title={data.movie.title}
+                horario={data.name}
+            />
         </>
     )
 }

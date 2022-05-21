@@ -1,13 +1,16 @@
 import "./estilos.css";
 import styled from 'styled-components';
 
-export default function Rodape({image, title, horario, valor}) {
+export default function Rodape({image, title, horario}) {
     return (
         <RegiaoRodape>
-            <div>
-                <img src={image}></img>
+            <div className="imagem">
+                <img src={image} alt=""></img>
             </div>
-            <h4>{title}</h4>
+            <div>
+                <h4>{title}</h4>
+                <h4>{horario}</h4>
+            </div>
         </RegiaoRodape>
     )
 }
@@ -26,7 +29,7 @@ const RegiaoRodape = styled.footer`
     bottom: 0px;
     margin-top: 20px;
 
-    div {
+    .imagem {
         width: 64px;
         height: 89px;
         background-color: #FFFFFF;
