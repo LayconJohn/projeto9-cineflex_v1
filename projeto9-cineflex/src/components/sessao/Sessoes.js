@@ -42,8 +42,6 @@ export default function Sessoes() {
         
     }, []);
 
-
-
     return (
         <>
             <Titulo>Selecione a Sessão</Titulo>
@@ -54,7 +52,10 @@ export default function Sessoes() {
                     })}
                 </RegiaoSessoes>
             }
-            <Rodape />
+            <Rodape 
+                image={sessoes.posterURL}
+                title={sessoes.title}
+            />
         </>
     )
 } 
