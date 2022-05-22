@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import axios from "axios";
 
+import pedido from "../../global/pedido";
 import Rodape from "../rodape/Rodape";
 import { Loading } from "../Loading";
 
@@ -34,7 +35,10 @@ export default function Sessoes() {
         promisse.then((response) => {
             setSessoes(response.data)
             console.log("Sessões... OK")
-            //console.log(response.data)
+            pedido.idImage = response.data.posterURL;
+            pedido.nomeFilme = response.data.title;
+            console.log(pedido)
+
         });
         promisse.catch(() => {
             alert("Deu ruim");

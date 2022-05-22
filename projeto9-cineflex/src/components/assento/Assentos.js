@@ -29,6 +29,8 @@ export default function Assentos() {
             .then((response) => {
             setAssentos([...response.data.seats])
             setData(response.data)
+            pedido.dataFilme = response.data.day.date;
+            pedido.horarioFilme = response.data.name;
             console.log("Assentos... OK")
         })
             .catch((err) => {
@@ -42,7 +44,6 @@ export default function Assentos() {
         pedido.reserva.cpf = cpf;
         setNome("");
         setCpf("");
-        console.log(pedido)
     }
     
 
@@ -100,8 +101,8 @@ export default function Assentos() {
                 </form>
             </main>
             <Rodape 
-                image={""}
-                title={""}
+                image={pedido.idImage}
+                title={pedido.nomeFilme}
                 horario={data.name}
             />
         </>
