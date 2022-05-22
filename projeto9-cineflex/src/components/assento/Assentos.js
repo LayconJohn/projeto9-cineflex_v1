@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import axios from "axios";
 
+import pedido from "../../global/pedido";
 import Rodape from "../rodape/Rodape";
 import { Loading } from "../Loading";
 
@@ -37,13 +38,11 @@ export default function Assentos() {
     }, []);
 
     function submitDados() {
-        const dados={
-            nome:nome,
-            cpf:cpf,
-            assentos:[]
-        }
+        pedido.reserva.name = nome;
+        pedido.reserva.cpf = cpf;
         setNome("");
         setCpf("");
+        console.log(pedido)
     }
     
 
