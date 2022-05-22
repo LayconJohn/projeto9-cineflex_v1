@@ -15,15 +15,13 @@ export default function Assentos() {
     //Estado
     const [assentos, setAssentos] = useState([]);
     const [data, setData] = useState({});
+    const [selecionado, setSelecionado] = useState(false)
     const [nome, setNome] = useState("");
-    const [email, setEmail] = useState("");
+    const [cpf, setCpf] = useState("");
 
     //logic
-    const forms = [{titulo: "Nome do comprador", input: "Digite seu nome...", type:"text", value:nome},
-    {titulo: "CPF do comprador", input: "Digite seu CPF...", type:"email", value:email}]
-
     const {idAssento} = useParams();
-    console.log("Id dos assentos: ", idAssento)
+
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idAssento}/seats`);
         promisse
@@ -36,7 +34,17 @@ export default function Assentos() {
                 console.log("Erro nos Assentos")
                 console.log(err)
             })
-    }, [])
+    }, []);
+
+    function submitDados() {
+        const dados={
+            nome:nome,
+            cpf:cpf,
+            assentos:[]
+        }
+        setNome("");
+        setCpf("");
+    }
     
 
     //render
@@ -47,7 +55,7 @@ export default function Assentos() {
                 {assentos.length === 0 ? <Loading /> : 
                     <SelecionarAssentos>
                         {assentos.map((assento,index) => {
-                            return <div className={`assento ${assento.isAvailable ? "disponivel" : "indisponivel"}`} key={index}>{assento.name}</div>
+                            return <div className={`assento ${assento.isAvailable ? "disponivel" : "indisponivel"} ${selecionado ? "selecionado" : ""}`} key={index}>{assento.name}</div>
                         })}
                     </SelecionarAssentos>
                 }
@@ -59,7 +67,7 @@ export default function Assentos() {
                         </div>
                     })}
                 </Legenda>
-                <form>
+                <form onSubmit={submitDados}>
                     <Form>
 
                         <div>
@@ -78,23 +86,23 @@ export default function Assentos() {
                             <input
                                 type="text"
                                 placeholder="Digite seu CPF"
-                                value={email}
+                                value={cpf}
                                 required
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => setCpf(e.target.value)}
                             />
                         </div>
                  
                     </Form>
                     <Button>
                         <Link to="/sucesso">
-                            <div>Reservar assento (s)</div> 
+                            <div onClick={submitDados}>Reservar assento (s)</div> 
                         </Link>     
                     </Button>
                 </form>
             </main>
             <Rodape 
-                image={data.movie.posterURL}
-                title={data.movie.title}
+                image={""}
+                title={""}
                 horario={data.name}
             />
         </>

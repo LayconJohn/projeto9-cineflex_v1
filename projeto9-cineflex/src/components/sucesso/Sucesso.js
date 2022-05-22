@@ -1,15 +1,21 @@
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
+import pedido from "../../global/pedido";
 import "./estilos.css";
 
-const dados = [
-    {descricao: "Filme e sessão", info: ["Enola Holmes", "26/04/2021 15:00"]},
-    {descricao: "Filme e sessão", info: ["Assento 15", "Assento 16"]},
-    {descricao: "comprador", info: ["Nome: Alfredo Novaes", "CPF: 000.000.000-00"]}
-]
+
 
 export default function Sucesso() {
+    //logic
+    const dados = [
+        {descricao: "Filme e sessão", info: [`${pedido.nomeFilme}`, `${pedido.dataFilme} - ${pedido.horarioFilme}`]},
+        {descricao: "Assentos", info: [...pedido.reserva.ids]},
+        {descricao: "Comprador", info: [`Nome: ${pedido.reserva.name}`, `CPF: ${pedido.reserva.cpf}`]}
+    ]
+
+
+    //render
     return (
         <>
             <Titulo>Pedido feito com sucesso!</Titulo>
