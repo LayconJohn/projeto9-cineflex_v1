@@ -14,7 +14,7 @@ function Sessao({sessoes, valor}) {
     return (
         <div className="sessao" key={valor.id}>
             <p>{`${valor.weekday} - ${valor.date}`}</p>
-            <Link to={`/sessao/${sessoes.id}`}>
+            <Link to={`/sessao/${valor.showtimes[0].id}`}>
                 <div className="horarios">
                     <div>{valor.showtimes[0].name}</div>
                     <div>{valor.showtimes[1].name}</div>

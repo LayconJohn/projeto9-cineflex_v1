@@ -11,12 +11,33 @@ import "./estilos.css";
 
 const legendas = ["selecionado", "disponivel", "indisponivel"];
 
+function Assento({assento, index}) {
+    //Estado
+    const [selecionado, setSelecionado] = useState(false);
+    //logic
+    function selecionarAssento(index, assento) {
+        if (assento.isAvailable) {
+            setSelecionado(!selecionado)
+            pedido.reserva.ids.push(index + 1)
+        } else {
+            alert("Assento indisponível. Por favor, selecione outro")
+        }
+    }
+
+    //render
+    return (
+        <>
+        <div onClick={() => {selecionarAssento(index, assento)}} className={`assento ${assento.isAvailable ? "disponivel" : "indisponivel"} ${selecionado ? "selecionado" : ""}`} key={index}>{assento.name}</div>
+        </>
+    )
+}
+
 export default function Assentos() {
 
     //Estado
     const [assentos, setAssentos] = useState([]);
     const [data, setData] = useState({});
-    const [selecionado, setSelecionado] = useState(false)
+
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
 
@@ -46,10 +67,6 @@ export default function Assentos() {
         setCpf("");
     }
 
-    function selecionarAssento(index) {
-        console.log(index + 1)
-    }
-    
 
     //render
     return (
@@ -59,7 +76,7 @@ export default function Assentos() {
                 {assentos.length === 0 ? <Loading /> : 
                     <SelecionarAssentos>
                         {assentos.map( (assento, index) => {
-                            return <div onClick={() => {console.log(`Teste: ${assento.isAvailable ? pedido.reserva.ids.push(index + 1) : alert("Assento indisponível. Por favor, selecione outro")} `)}} className={`assento ${assento.isAvailable ? "disponivel" : "indisponivel"} ${selecionado ? "selecionado" : ""}`} key={index}>{assento.name}</div>
+                            return <Assento assento={assento} index={index}/>
                         })}
                     </SelecionarAssentos>
                 }

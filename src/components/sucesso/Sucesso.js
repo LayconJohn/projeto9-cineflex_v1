@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
+import axios from "axios";
 
 import pedido from "../../global/pedido";
 import "./estilos.css";
@@ -13,6 +14,29 @@ export default function Sucesso() {
         {descricao: "Assentos", info: [...pedido.reserva.ids]},
         {descricao: "Comprador", info: [`Nome: ${pedido.reserva.name}`, `CPF: ${pedido.reserva.cpf}`]}
     ]
+
+    const navigate = useNavigate();
+
+    function enviarDados() {
+        const promisse = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
+            ids: [...pedido.reserva.ids],
+            name: pedido.reserva.name,
+            cpf: pedido.reserva.cpf
+        })
+        promisse
+            .then(() => {
+                pedido.idImage = "";
+                pedido.nomeFilme = "";
+                pedido.horarioFilme = "";
+                pedido.dataFilme = "";
+                pedido.reserva.ids =[];
+                pedido.reserva.name ="Fulano";
+                pedido.reserva.cpf = "12345678900";
+                navigate("/")
+            })
+            .catch(() => alert("Erro de reserva, olhe novamente e preencha os campos."))
+        
+    }
 
 
     //render
