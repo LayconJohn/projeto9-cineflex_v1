@@ -45,6 +45,10 @@ export default function Assentos() {
         setNome("");
         setCpf("");
     }
+
+    function selecionarAssento(index) {
+        console.log(index + 1)
+    }
     
 
     //render
@@ -54,8 +58,8 @@ export default function Assentos() {
             <main>
                 {assentos.length === 0 ? <Loading /> : 
                     <SelecionarAssentos>
-                        {assentos.map((assento,index) => {
-                            return <div className={`assento ${assento.isAvailable ? "disponivel" : "indisponivel"} ${selecionado ? "selecionado" : ""}`} key={index}>{assento.name}</div>
+                        {assentos.map( (assento, index) => {
+                            return <div onClick={() => {console.log(`Teste: ${assento.isAvailable ? pedido.reserva.ids.push(index + 1) : alert("Assento indisponível. Por favor, selecione outro")} `)}} className={`assento ${assento.isAvailable ? "disponivel" : "indisponivel"} ${selecionado ? "selecionado" : ""}`} key={index}>{assento.name}</div>
                         })}
                     </SelecionarAssentos>
                 }
@@ -122,6 +126,15 @@ const SelecionarAssentos = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     padding: 0px 18px 15px 18px;
+
+    div:hover {
+        cursor: pointer;
+        opacity: 0.9;
+    }
+
+    div:active{
+        transform: translateY(2px);
+    }
 `;
 
 const Form = styled.div`
