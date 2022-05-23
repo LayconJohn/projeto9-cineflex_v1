@@ -32,7 +32,7 @@ export default function Sucesso() {
                 pedido.reserva.ids =[];
                 pedido.reserva.name ="Fulano";
                 pedido.reserva.cpf = "12345678900";
-                navigate("/")
+                navigate("/");
             })
             .catch(() => alert("Erro de reserva, olhe novamente e preencha os campos."))
         
@@ -55,7 +55,7 @@ export default function Sucesso() {
                     })}
                 <Button>
                     <Link to="/">
-                        <div>Voltar para a Home</div>
+                        <div onClick={enviarDados}>Voltar para a Home</div>
                     </Link>
                 </Button>
             </RegiaoSucesso>

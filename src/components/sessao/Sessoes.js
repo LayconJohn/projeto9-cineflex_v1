@@ -13,13 +13,15 @@ function Sessao({sessoes, valor}) {
  
     return (
         <div className="sessao" key={valor.id}>
-            <p>{`${valor.weekday} - ${valor.date}`}</p>
-            <Link to={`/sessao/${valor.showtimes[0].id}`}>
+            <p>{`${valor.weekday} - ${valor.date}`}</p>             
                 <div className="horarios">
+                <Link to={`/sessao/${valor.showtimes[0].id}`}>
                     <div>{valor.showtimes[0].name}</div>
-                    <div>{valor.showtimes[1].name}</div>
+                </Link>
+                <Link to={`/sessao/${valor.showtimes[0].id}`}>
+                    <div>{valor.showtimes[1].name}</div>     
+                </Link> 
                 </div>
-            </Link>
         </div> 
     )
 }
