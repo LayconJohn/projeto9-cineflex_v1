@@ -1,3 +1,5 @@
+//Componente Global
+
 let pedido = {
     idImage: "",
     nomeFilme: "",
