@@ -18,26 +18,16 @@ export default function Sucesso() {
     const navigate = useNavigate();
 
     function enviarDados() {
-        const promisse = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
-            ids: [...pedido.reserva.ids],
-            name: pedido.reserva.name,
-            cpf: pedido.reserva.cpf
-        })
-        promisse
-            .then(() => {
-                pedido.idImage = "";
-                pedido.nomeFilme = "";
-                pedido.horarioFilme = "";
-                pedido.dataFilme = "";
-                pedido.reserva.ids =[];
-                pedido.reserva.name ="Fulano";
-                pedido.reserva.cpf = "12345678900";
-                navigate("/");
-            })
-            .catch(() => alert("Erro de reserva, olhe novamente e preencha os campos."))
-        
-    }
+        pedido.idImage = "";
+        pedido.nomeFilme = "";
+        pedido.horarioFilme = "";
+        pedido.dataFilme = "";
+        pedido.reserva.ids =[];
+        pedido.reserva.name ="Fulano";
+        pedido.reserva.cpf = "12345678900";
+        navigate("/");
 
+    }
 
     //render
     return (

@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import axios from "axios";
@@ -18,7 +18,13 @@ function Assento({assento, index}) {
     function selecionarAssento(index, assento) {
         if (assento.isAvailable) {
             setSelecionado(!selecionado)
-            pedido.reserva.ids.push(index + 1)
+            if (pedido.reserva.ids.includes(index + 1)) {
+                setSelecionado(!selecionado);
+            }
+            else {
+                pedido.reserva.ids.push(index + 1);
+                assento.isAvailable = false;
+            }
         } else {
             alert("Assento indisponível. Por favor, selecione outro")
         }
@@ -44,6 +50,8 @@ export default function Assentos() {
     //logic
     const {idAssento} = useParams();
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idAssento}/seats`);
         promisse
@@ -61,10 +69,23 @@ export default function Assentos() {
     }, []);
 
     function submitDados() {
+        //pegar dados do form
         pedido.reserva.name = nome;
         pedido.reserva.cpf = cpf;
         setNome("");
         setCpf("");
+        //postar valors na API
+        const dadosPost = {
+            ids: [...pedido.reserva.ids],
+            name: pedido.reserva.name,
+            cpf: pedido.reserva.cpf
+        };
+        const promisse = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", dadosPost)
+        promisse
+            .then(() => {
+                navigate("/sucesso")
+            })
+            .catch(() => alert("Erro de reserva, olhe novamente e preencha os campos."))
     }
 
 
@@ -90,7 +111,6 @@ export default function Assentos() {
                 </Legenda>
                 <form onSubmit={submitDados}>
                     <Form>
-
                         <div>
                             <p>Nome do comprador</p>
                             <input
